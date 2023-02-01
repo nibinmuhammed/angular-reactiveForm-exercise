@@ -1,0 +1,193 @@
+<div class="text-center mt-1">
+  <h4>USER FORM</h4>
+</div>
+<div class="container-fluid newForm">
+  <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        [ngClass]="{ 'is-invalid': submit && f.name.errors }"
+      />
+      <div *ngIf="submit && f.name.errors" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required">Name is required</div>
+        <div *ngIf="f.name.errors.pattern">Invalid Name</div>
+      </div>
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input
+        type="email"
+        class="form-control"
+        formControlName="email"
+        [ngClass]="{ 'is-invalid': submit && f.email.errors }"
+      />
+      <div *ngIf="submit && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">Invalid email</div>
+      </div>
+    </div>
+
+    <div>
+      <label>Phone Number</label>
+      <input
+        type="number"
+        class="form-control"
+        formControlName="phone"
+        [ngClass]="{ 'is-invalid': submit && f.phone.errors }"
+      />
+      <div *ngIf="submit && f.phone.errors" class="invalid-feedback">
+        <div *ngIf="f.phone.errors.required">Phone Number is required</div>
+        <div *ngIf="f.phone.errors.pattern">Invalid phone number</div>
+      </div>
+    </div>
+
+    <div>
+      <label>Password</label>         
+      <input
+        [ngClass]="{ 'is-invalid': submit && f.password.errors }"
+        type="password"
+        class="form-control"
+        formControlName="password"
+      />         
+      <div *ngIf="submit && f.password.errors" class="invalid-feedback">
+               
+        <div>
+                       
+          <div *ngIf="f.password.errors?.required">Password is required</div>
+          <ul *ngIf="f.password.dirty && f.password.value">
+                           
+            <li
+              [ngClass]="
+                f.password.errors?.minChar ? 'text-danger' : 'text-success'
+              "
+            >
+              Contains Minimun 8 characters               
+            </li>
+                           
+            <li
+              [ngClass]="
+                f.password.errors?.upperCase ? 'text-danger' : 'text-success'
+              "
+            >
+              Contains uppercase               
+            </li>
+                           
+            <li
+              [ngClass]="
+                f.password.errors?.lowerCase ? 'text-danger' : 'text-success'
+              "
+            >
+              Contains lowercase               
+            </li>
+                           
+            <li
+              [ngClass]="
+                f.password.errors?.numberCase ? 'text-danger' : 'text-success'
+              "
+            >
+              Contains Number               
+            </li>
+                           
+            <li
+              [ngClass]="
+                f.password.errors?.specialChar ? 'text-danger' : 'text-success'
+              "
+            >
+              Contains special character               
+            </li>
+                         
+          </ul>
+        </div>
+                 
+      </div>
+             
+    </div>
+
+    <div>
+      <label>Confirm Password</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="confirm"
+        [ngClass]="{ 'is-invalid': submit && f.confirm.errors }"
+      />
+      <div *ngIf="submit && f.confirm.errors" class="invalid-feedback">
+        <div *ngIf="f.confirm.errors.required">
+          Confirm Password is required
+        </div>
+        <div *ngIf="f.confirm.errors.MustMatch">
+          Password and Confirm Password does not match
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <div class="form-group">
+      <label for="gender" class="fw-bolder">Gender : </label><br />
+
+      <input
+        id="male"
+        type="radio"
+        value="male"
+        name="gender"
+        formControlName="gender"
+      />
+      <label for="male"> Male</label><br />
+
+      <input
+        id="female"
+        type="radio"
+        value="female"
+        name="gender"
+        formControlName="gender"
+      />
+      <label for="female">Female</label>
+    </div>
+
+     
+    <div>
+      <label>DOB</label><br />         
+      <input
+        [ngClass]="{ 'is-invalid': submit && f.dob.errors }"
+        type="date"
+        formControlName="dob"
+        class="form-control"
+      />       
+
+      <div *ngIf="submit && f.dob.errors" class="invalid-feedback">
+        <div *ngIf="f.dob.errors.required">DOB is required</div>
+                 
+        <div *ngIf="f.dob.errors.dobValidate">
+          Your Age must be greater than 18
+        </div>
+            
+      </div>
+    </div>
+
+    <br />
+
+    <div class="form-group form-check">
+      <input
+        type="checkbox"
+        formControlName="acceptTerms"
+        id="acceptTerms"
+        class="form-check-input acc"
+        [ngClass]="{ 'is-invalid': submit && f.acceptTerms.errors }"
+      />
+      <label for="acceptTerms" class="form-check-label acc"
+        >Accept Terms & Conditions</label
+      >
+      <div *ngIf="submit && f.acceptTerms.errors" class="invalid-feedback">
+        Please accept terms and conditions
+      </div>
+    </div>
+
+    <div>
+      <button type="submit" class="btn btn-danger">Submit</button>
+    </div>
+  </form>
+</div>
